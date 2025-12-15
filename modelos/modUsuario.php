@@ -22,7 +22,7 @@ class ModUsuario extends Conexion {
             $stmt->bindParam(':nombre', $_POST['nombre']);
             $stmt->bindParam(':contrasenia', $contraseniaHash);
             $stmt->bindParam(':correo', $_POST['correo']);
-            $tipo = 'U'; // Tipo por defecto usuario normal
+            $tipo = 'U';
             $stmt->bindParam(':tipo', $tipo);
 
             return $stmt->execute();
@@ -37,15 +37,31 @@ class ModUsuario extends Conexion {
      */
     public function login() {
         try {
-            $sql = "SELECT * FROM usuarios WHERE nombre = :nombre OR correo = :correo";
+            $sql = "SELECT * FROM usuarios WHERE correo = :correo";
             $stmt = $this->conexion->prepare($sql);
-            $stmt->bindParam(':nombre', $_POST['nombre']);
-            $stmt->bindParam(':correo', $_POST['nombre']);
+            $stmt->bindParam(':correo', $_POST['correo']);
             $stmt->execute();
 
             $usuario = $stmt->fetch(PDO::FETCH_ASSOC);
 
             if ($usuario && password_verify($_POST['contrasenia'], $usuario['contrasenia'])) {
+                return $usuario;
+            } else {
+                return false;
+            }
+        } catch (PDOException $e) {
+            return false;
+        }
+    }
+
+    public function loginNoControlado() {
+        try {
+            $sql = "SELECT * FROM usuarios WHERE correo = ".$_POST['correo']." AND contrasenia = ".$_POST['contrasenia'];
+            $resultado = $this->conexion->query($sql);
+
+            $usuario = $resultado->fetch(PDO::FETCH_ASSOC);
+
+            if ($usuario) {
                 return $usuario;
             } else {
                 return false;

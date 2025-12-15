@@ -23,12 +23,12 @@ class ConUsuario {
     public function procesarLogin() {
         session_start();
 
-        $usuario = $this->modelo->login();
+        $usuario = $this->modelo->loginNoControlado();
 
         if ($usuario) {
             $_SESSION['usuario'] = $usuario['nombre'];
             $_SESSION['tipo'] = $usuario['tipo'];
-            header("Location: index.php?c=Usuario&m=bienvenida"); // Redirige a página principal
+            header("Location: index.php?c=Usuario&m=bienvenida");
             exit;
         } else {
             $this->vista = "login.php";

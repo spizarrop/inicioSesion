@@ -11,7 +11,7 @@
                 <div class="mensaje error"><?php echo $datos; ?></div>
             <?php endif; ?>
             <label>Usuario o correo:</label>
-            <input type="text" name="nombre" placeholder="usuario123@gmail.com" required>
+            <input type="text" name="correo" placeholder="usuario123@gmail.com" required>
 
             <label>Contraseña:</label>
             <input type="password" name="contrasenia" placeholder="••••••••" required>
