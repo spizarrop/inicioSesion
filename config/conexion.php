@@ -7,10 +7,12 @@
         function __construct(){
 
             try{
+                // Creamos la conexión
                 $this->conexion = new PDO("mysql:host=".SERVIDOR.";dbname=".BBDD,USUARIO,PASSWORD);
-                /*Le ponemos esto para trabajar por defecto con fetch objetos */
+                // Le ponemos esto para trabajar por defecto con fetch objetos
                 $this->conexion->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE,PDO::FETCH_OBJ);
             }catch(PDOException $e){
+                // Si se produce algun error lo mostramos por pantalla
                 echo $e->getMessage();
             }
             

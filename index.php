@@ -1,4 +1,5 @@
 <?php
+    session_start();
     require_once __DIR__.'/config/rutas.php';
     /**
      * @var $controlador Recibe el controlador al que queremos ir mediante el metodo get
@@ -23,6 +24,9 @@
      */
     $objContro = new $instanciaControlador();
 
+    /**
+     * @var $datos recoge los datos necesarios para mostrar en la vista correspondiente
+     */
     $datos=$objContro->$metodo();
     include VISTAS.$objContro->vista;
 ?>

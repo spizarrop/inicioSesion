@@ -14,7 +14,7 @@
             <input type="text" name="correo" placeholder="usuario123@gmail.com" required>
 
             <label>Contraseña:</label>
-            <input type="password" name="contrasenia" placeholder="••••••••" required>
+            <input type="text" name="contrasenia" placeholder="••••••••" required>
 
             <button type="submit" name="login">Iniciar Sesión</button>
 
