@@ -23,7 +23,7 @@ class ConUsuario {
      */
     public function procesarLogin() {
         // Recojo la variable de la sesión para saber si el logueo es seguro o inseguro
-        $modo = $_SESSION['modo_login'] ?? 'seguro';
+        $modo = $_SESSION['modo_login'] ?? 'inseguro';
 
         // Dependiendo del modo de logueo establecido llamamos a un método u otro
         if ($modo === 'inseguro') {
